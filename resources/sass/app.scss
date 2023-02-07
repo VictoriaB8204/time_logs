@@ -1,0 +1,30 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+html, body {
+    height: 100%;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background: white !important;
+}
+
+.w-12-em{
+    width: 12em !important;
+}
+
+.w-6-em{
+    width: 6em !important;
+}
+
+.w-0{
+    width: 0 !important;
+}
