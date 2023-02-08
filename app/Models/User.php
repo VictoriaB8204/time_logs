@@ -43,8 +43,35 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($user) {
+            $user->time_logs()->delete();
+            $user->roles()->detach();
+        });
+    }
+
     public function time_logs()
     {
-        return $this->hasMany(TimeLog::class);
+        return $this->hasMany(TimeLog::class, 'creator_id', 'id');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function hasRole($roleName){
+        return (bool) $this->roles()
+            ->where('name', $roleName)
+            ->count() > 0;
+    }
+
+    public function hasAccess($roleName){
+        return (bool) $this->roles()
+            ->where('name', 'admin')
+            ->orWhere('name', $roleName)
+            ->count() > 0;
     }
 }

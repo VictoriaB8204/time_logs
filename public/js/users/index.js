@@ -75,6 +75,104 @@ function hideFailToast() {
 
 /***/ }),
 
+/***/ "./resources/js/users/index/destroy.js":
+/*!*********************************************!*\
+  !*** ./resources/js/users/index/destroy.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _handle_errors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../handle_errors */ "./resources/js/handle_errors.js");
+
+$(document).on('click', '.destroy_user', function () {
+  if (confirm('Do you really want to delete user?')) {
+    $.ajax({
+      url: 'users/' + $(this).closest('tr').find('.user_id').val(),
+      method: 'delete',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      error: function error(_error) {
+        (0,_handle_errors__WEBPACK_IMPORTED_MODULE_0__.handleError)(_error, 'User delete failed');
+      },
+      success: function success(result) {
+        $('#users_table').replaceWith($(result));
+      }
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/users/index/roles/show.js":
+/*!************************************************!*\
+  !*** ./resources/js/users/index/roles/show.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _handle_errors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../handle_errors */ "./resources/js/handle_errors.js");
+
+$(document).on('click', '.show_roles_button', function () {
+  $.ajax({
+    url: 'users/' + $(this).closest('tr').find('.user_id').val() + '/roles',
+    method: 'get',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    error: function error(_error) {
+      (0,_handle_errors__WEBPACK_IMPORTED_MODULE_0__.handleError)(_error, 'Load user roles failed');
+    },
+    success: function success(result) {
+      $('#role_list').replaceWith($(result));
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/users/index/roles/update.js":
+/*!**************************************************!*\
+  !*** ./resources/js/users/index/roles/update.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _handle_errors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../handle_errors */ "./resources/js/handle_errors.js");
+/* harmony import */ var _toasts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../toasts */ "./resources/js/toasts.js");
+
+
+function serializeRoles() {
+  var data = [];
+  $('#role_list .user_role:checked').each(function () {
+    data.push($(this).val());
+  });
+  return data;
+}
+$(document).on('change', '.user_role', function () {
+  $.ajax({
+    url: 'users/' + $(this).closest('#role_list').find('#user_id').val() + '/roles',
+    method: 'post',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    data: {
+      'roles': serializeRoles()
+    },
+    error: function error(_error) {
+      (0,_handle_errors__WEBPACK_IMPORTED_MODULE_0__.handleError)(_error, 'Updating user roles failed');
+    },
+    success: function success() {
+      (0,_toasts__WEBPACK_IMPORTED_MODULE_1__.showSuccessToast)('User roles updated');
+    }
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/users/index/update.js":
 /*!********************************************!*\
   !*** ./resources/js/users/index/update.js ***!
@@ -172,6 +270,9 @@ var __webpack_exports__ = {};
   !*** ./resources/js/users/index.js ***!
   \*************************************/
 __webpack_require__(/*! ./index/update */ "./resources/js/users/index/update.js");
+__webpack_require__(/*! ./index/destroy */ "./resources/js/users/index/destroy.js");
+__webpack_require__(/*! ./index/roles/show */ "./resources/js/users/index/roles/show.js");
+__webpack_require__(/*! ./index/roles/update */ "./resources/js/users/index/roles/update.js");
 })();
 
 /******/ })()

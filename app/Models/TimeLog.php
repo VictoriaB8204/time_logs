@@ -21,7 +21,7 @@ class TimeLog extends Model
 
     public function creator()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'creator_id', 'id');
     }
 
     public function action_type()
