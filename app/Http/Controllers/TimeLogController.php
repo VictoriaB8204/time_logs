@@ -35,6 +35,15 @@ class TimeLogController extends Controller
         ]);
     }
 
+    public function payment(){
+        return view('time_logs.payment', [
+            'timeLogs' => TimeLog::where('start_time_date', '>', Carbon::now()->startOfWeek())
+                ->orderBy('creator_id')
+                ->orderBy('start_time_date')
+                ->get()
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -162,6 +171,15 @@ class TimeLogController extends Controller
         $timeLogs = TimeLog::where('creator_id', Auth::user()->id)
             ->where('start_time_date', '>', Carbon::now()->startOfWeek())
             ->orderBy('start_time_date', 'desc')
+            ->get();
+        $excelService = new TimeLogsExcelService();
+        return $excelService->makeDocument($timeLogs);
+    }
+
+    public function getPaymentExcel(){
+        $timeLogs = TimeLog::where('start_time_date', '>', Carbon::now()->startOfWeek())
+            ->orderBy('creator_id')
+            ->orderBy('start_time_date')
             ->get();
         $excelService = new TimeLogsExcelService();
         return $excelService->makeDocument($timeLogs);

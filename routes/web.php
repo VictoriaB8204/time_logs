@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('time_logs')->controller(\App\Http\Controllers\TimeLogController::class)->group(function () {
     Route::get('/archive', 'archive')->name('time_logs.archive');
     Route::get('/get_excel', 'getExcel');
+    Route::get('/get_payment_excel', 'getPaymentExcel');
+    Route::get('/payment', 'payment')->name('time_logs.payment');
     Route::post('/summarize', 'summarize');
 });
 
