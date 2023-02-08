@@ -53,7 +53,7 @@ class TimeLogController extends Controller
      */
     public function store(Request $request)
     {
-        $previousTimeLog = TimeLog::all()->last();
+        $previousTimeLog = TimeLog::where('creator_id', Auth::user()->id)->get()->last();
 
         $timelog = TimeLog::create($request->all());
         $timelog->creator()->associate(Auth::user()->id);
