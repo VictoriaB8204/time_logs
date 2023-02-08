@@ -25,7 +25,9 @@
                     </td>
                     <td>{{ $user->email }}</td>
                     <td>
-                        <input class="form-control" type="number" step="1" name="current_rate" value="{{ $user->current_rate }}">
+                        @if(Auth::user()->id == $user->id)
+                            <input class="form-control" type="number" step="1" name="current_rate" value="{{ $user->current_rate }}">
+                        @endif
                     </td>
                     <td></td>
                 </tr>
