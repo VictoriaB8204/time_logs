@@ -38,7 +38,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('time_logs.archive') }}">Archive</a>
                             </li>
-                            @if(Auth::user()->hasRole('payer'))
+                            @if(Auth::user()->hasAccess('payer'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('payments.index') }}">Payment</a>
                                 </li>

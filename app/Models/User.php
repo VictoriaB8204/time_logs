@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -64,15 +65,14 @@ class User extends Authenticatable
     }
 
     public function hasRole($roleName){
-        return (bool) $this->roles()
+        return (bool) $this->roles
             ->where('name', $roleName)
             ->count() > 0;
     }
 
     public function hasAccess($roleName){
-        return (bool) $this->roles()
-            ->where('name', 'admin')
-            ->orWhere('name', $roleName)
+        return (bool) $this->roles
+            ->whereIn('name', ['admin', $roleName])
             ->count() > 0;
     }
 
