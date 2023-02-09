@@ -1,4 +1,4 @@
-<div id="users_table">
+<div id="users_table" class="table-responsive">
     <table class="table table-striped">
         <thead>
         <tr>

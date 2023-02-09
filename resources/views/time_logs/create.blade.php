@@ -1,8 +1,15 @@
 <div class="mb-5" id="create_form_layout">
     <div class="card">
-        <div class="card-header">{{ __('Make new time log') }}</div>
+        <div class="card-header p-0 border-0">
+            <button class="w-100 h-100 btn m-0 text-start dropdown-toggle"
+                    type="button" data-bs-toggle="collapse" data-bs-target="#createFormCardBody"
+                    aria-expanded="true" aria-controls="createFormCardBody"
+            >
+                {{ __('Make new time log') }}
+            </button>
+        </div>
 
-        <div class="card-body">
+        <div class="card-body collapse show" id="createFormCardBody">
             @if (session('status'))
                 <div class="alert alert-success" role="alert">
                     {{ session('status') }}

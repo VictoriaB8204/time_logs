@@ -10826,7 +10826,7 @@ html, body {
 .table-sticky-header th {
   position: sticky;
   top: 0;
-  background: white !important;
+  background: var(--bs-body-bg) !important;
 }
 
 .w-12-em {

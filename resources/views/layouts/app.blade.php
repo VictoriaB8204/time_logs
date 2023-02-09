@@ -92,7 +92,9 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container-xxl">
+                @yield('content')
+            </div>
         </main>
     </div>
     @include('toasts.toast_fail')

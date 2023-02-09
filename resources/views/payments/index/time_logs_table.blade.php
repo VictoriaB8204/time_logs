@@ -1,11 +1,16 @@
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h3>Current week detalization</h3>
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+    <button class="btn p-0 dropdown-toggle text-start flex-grow-1"
+            type="button" data-bs-toggle="collapse" data-bs-target="#currentWeekTimeLogTable"
+            aria-expanded="true" aria-controls="currentWeekTimeLogTable"
+    >
+        <h3 class="d-inline-block">Current week detalization</h3>
+    </button>
     <div>
         <button class="btn btn-primary" id="get_payment_excel_button">Get Excel</button>
     </div>
 </div>
 
-<div class="table-responsive mb-5">
+<div class="table-responsive mb-5 collapse show" id="currentWeekTimeLogTable">
     <table class="table table-striped table-sticky-header">
         <thead>
         <tr>

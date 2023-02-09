@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h2>Archive</h2>
+    <h2>Archive</h2>
 
-        <table class="table table-striped">
+    <div class="table-responsive">
+        <table class="table table-striped table-sticky-header">
             <thead>
             <tr>
                 <th scope="col" class="w-12-em">Start time</th>
