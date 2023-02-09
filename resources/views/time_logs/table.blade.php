@@ -1,5 +1,5 @@
-<div id="time_logs_table">
-    <table class="table table-striped">
+<div id="time_logs_table" class="table-responsive">
+    <table class="table table-striped table-sticky-header">
         <thead>
         <tr>
             <th scope="col" class="w-0"></th>

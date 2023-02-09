@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('time_logs')->controller(\App\Http\Controllers\TimeLogController::class)->group(function () {
     Route::get('/archive', 'archive')->name('time_logs.archive');
     Route::get('/get_excel', 'getExcel');
-    Route::get('/get_payment_excel', 'getPaymentExcel');
-    Route::get('/payment', 'payment')->name('time_logs.payment');
     Route::post('/summarize', 'summarize');
 });
 
@@ -31,6 +29,11 @@ Route::prefix('users/{user}/roles')->controller(\App\Http\Controllers\RoleContro
 });
 Route::resource('users', \App\Http\Controllers\UserController::class);
 
+Route::prefix('payments')->controller(\App\Http\Controllers\PaymentController::class)->group(function () {
+    Route::get('/', 'index')->name('payments.index');
+    Route::get('/get_excel', 'getExcel');
+    Route::post('/pay_for_the_time/{user}', 'payForTheTime');
+});
 
 Auth::routes();
 

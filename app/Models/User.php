@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -73,5 +74,12 @@ class User extends Authenticatable
             ->where('name', 'admin')
             ->orWhere('name', $roleName)
             ->count() > 0;
+    }
+
+    public function getTimeLogsForPaymentAttribute(){
+        return $this->time_logs()
+            ->where('start_time_date', '<', Carbon::now()->startOfWeek())
+            ->where('is_payed', false)
+            ->get();
     }
 }

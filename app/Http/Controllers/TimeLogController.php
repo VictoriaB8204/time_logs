@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ActionType;
 use App\Models\Software;
 use App\Models\TimeLog;
+use App\Models\User;
 use App\Services\ExcelServices\TimeLogsExcelService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -32,15 +33,6 @@ class TimeLogController extends Controller
     public function archive(){
         return view('time_logs.archive', [
             'timeLogs' => TimeLog::where('creator_id', Auth::user()->id)->orderBy('start_time_date')->get()
-        ]);
-    }
-
-    public function payment(){
-        return view('time_logs.payment', [
-            'timeLogs' => TimeLog::where('start_time_date', '>', Carbon::now()->startOfWeek())
-                ->orderBy('creator_id')
-                ->orderBy('start_time_date')
-                ->get()
         ]);
     }
 
@@ -171,15 +163,6 @@ class TimeLogController extends Controller
         $timeLogs = TimeLog::where('creator_id', Auth::user()->id)
             ->where('start_time_date', '>', Carbon::now()->startOfWeek())
             ->orderBy('start_time_date', 'desc')
-            ->get();
-        $excelService = new TimeLogsExcelService();
-        return $excelService->makeDocument($timeLogs);
-    }
-
-    public function getPaymentExcel(){
-        $timeLogs = TimeLog::where('start_time_date', '>', Carbon::now()->startOfWeek())
-            ->orderBy('creator_id')
-            ->orderBy('start_time_date')
             ->get();
         $excelService = new TimeLogsExcelService();
         return $excelService->makeDocument($timeLogs);

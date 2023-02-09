@@ -19,7 +19,8 @@
             </thead>
             <tbody>
             @foreach($timeLogs as $timeLog)
-                <tr class="time_log_form">
+                <tr class="time_log_form {{ $timeLog->is_payed ? 'table-success' : ''}}"
+                >
                     <td>{{ $timeLog->start_time_date ? $timeLog->start_time_date : '' }}</td>
                     <td>{{ $timeLog->end_time_date ? $timeLog->end_time_date : '' }}</td>
                     <td>{{ $timeLog->action_type ? $timeLog->action_type->name : '' }}</td>

@@ -40,7 +40,7 @@
                             </li>
                             @if(Auth::user()->hasAccess('payer'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('time_logs.payment') }}">Payment</a>
+                                    <a class="nav-link" href="{{ route('payments.index') }}">Payment</a>
                                 </li>
                             @endif
                         @endauth
