@@ -16,4 +16,6 @@ mix
     .js('resources/js/home.js', 'public/js')
     .js('resources/js/payments/index.js', 'public/js/payments')
     .js('resources/js/users/index.js', 'public/js/users')
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .version()
+    .sourceMaps();
