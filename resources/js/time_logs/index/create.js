@@ -1,4 +1,5 @@
 import {handleError} from "../../handle_errors";
+import {refresh} from "../../refresh_block";
 
 $(document).on('click', '#create_button', function () {
     $.ajax({
@@ -12,7 +13,7 @@ $(document).on('click', '#create_button', function () {
             handleError(error, 'Time log create failed');
         },
         success: function (result) {
-            $('#page_content').replaceWith($(result));
+            refresh($('#page_content'), $(result));
         }
     })
 })

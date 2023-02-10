@@ -1,4 +1,5 @@
 import {handleError} from "../../handle_errors";
+import {refresh} from "../../refresh_block";
 
 export function reloadIndex(){
     $.ajax({
@@ -8,7 +9,7 @@ export function reloadIndex(){
             handleError(error, 'Time log reload failed');
         },
         success: function (result) {
-            $('#page_content').replaceWith($(result));
+            refresh($('#page_content'), $(result));
         }
     })
 }

@@ -5306,13 +5306,17 @@ module.exports = {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _resize_textarea__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./resize_textarea */ "./resources/js/resize_textarea.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.common.js")["default"]);
@@ -5339,6 +5343,10 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtim
 // const app = new Vue({
 //     el: '#app'
 // });
+
+$(document).on("input", "textarea", function () {
+  (0,_resize_textarea__WEBPACK_IMPORTED_MODULE_0__.resizeTextArea)();
+});
 
 /***/ }),
 
@@ -5381,6 +5389,26 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/resize_textarea.js":
+/*!*****************************************!*\
+  !*** ./resources/js/resize_textarea.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "resizeTextArea": () => (/* binding */ resizeTextArea)
+/* harmony export */ });
+function resizeTextArea() {
+  $('textarea').each(function () {
+    console.log(this.scrollHeight);
+    $(this).outerHeight(38).outerHeight(this.scrollHeight);
+  });
+}
 
 /***/ }),
 

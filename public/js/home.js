@@ -48,6 +48,48 @@ function handleError(error, infoMessage) {
 
 /***/ }),
 
+/***/ "./resources/js/refresh_block.js":
+/*!***************************************!*\
+  !*** ./resources/js/refresh_block.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "refresh": () => (/* binding */ refresh)
+/* harmony export */ });
+/* harmony import */ var _resize_textarea__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./resize_textarea */ "./resources/js/resize_textarea.js");
+
+function refresh(block, replace) {
+  var ret = block.replaceWith(replace); // Call replaceWith
+
+  (0,_resize_textarea__WEBPACK_IMPORTED_MODULE_0__.resizeTextArea)();
+  return ret; // For chaining
+}
+
+/***/ }),
+
+/***/ "./resources/js/resize_textarea.js":
+/*!*****************************************!*\
+  !*** ./resources/js/resize_textarea.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "resizeTextArea": () => (/* binding */ resizeTextArea)
+/* harmony export */ });
+function resizeTextArea() {
+  $('textarea').each(function () {
+    console.log(this.scrollHeight);
+    $(this).outerHeight(38).outerHeight(this.scrollHeight);
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/serialize_tr.js":
 /*!**************************************!*\
   !*** ./resources/js/serialize_tr.js ***!
@@ -104,6 +146,8 @@ __webpack_require__(/*! ./index/summarize */ "./resources/js/time_logs/index/sum
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _handle_errors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../handle_errors */ "./resources/js/handle_errors.js");
+/* harmony import */ var _refresh_block__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../refresh_block */ "./resources/js/refresh_block.js");
+
 
 $(document).on('click', '#create_button', function () {
   $.ajax({
@@ -117,7 +161,7 @@ $(document).on('click', '#create_button', function () {
       (0,_handle_errors__WEBPACK_IMPORTED_MODULE_0__.handleError)(_error, 'Time log create failed');
     },
     success: function success(result) {
-      $('#page_content').replaceWith($(result));
+      (0,_refresh_block__WEBPACK_IMPORTED_MODULE_1__.refresh)($('#page_content'), $(result));
     }
   });
 });
@@ -133,6 +177,8 @@ $(document).on('click', '#create_button', function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _handle_errors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../handle_errors */ "./resources/js/handle_errors.js");
+/* harmony import */ var _refresh_block__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../refresh_block */ "./resources/js/refresh_block.js");
+
 
 $(document).on('click', '.destroy_time_log', function () {
   if (confirm('Do you really want to delete time log?')) {
@@ -146,7 +192,7 @@ $(document).on('click', '.destroy_time_log', function () {
         (0,_handle_errors__WEBPACK_IMPORTED_MODULE_0__.handleError)(_error, 'Time log delete failed');
       },
       success: function success(result) {
-        $('#time_logs_table').replaceWith($(result));
+        (0,_refresh_block__WEBPACK_IMPORTED_MODULE_1__.refresh)($('#time_logs_table'), $(result));
       }
     });
   }
@@ -194,6 +240,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "reloadIndex": () => (/* binding */ reloadIndex)
 /* harmony export */ });
 /* harmony import */ var _handle_errors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../handle_errors */ "./resources/js/handle_errors.js");
+/* harmony import */ var _refresh_block__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../refresh_block */ "./resources/js/refresh_block.js");
+
 
 function reloadIndex() {
   $.ajax({
@@ -203,7 +251,7 @@ function reloadIndex() {
       (0,_handle_errors__WEBPACK_IMPORTED_MODULE_0__.handleError)(_error, 'Time log reload failed');
     },
     success: function success(result) {
-      $('#page_content').replaceWith($(result));
+      (0,_refresh_block__WEBPACK_IMPORTED_MODULE_1__.refresh)($('#page_content'), $(result));
     }
   });
 }
@@ -220,6 +268,8 @@ function reloadIndex() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _handle_errors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../handle_errors */ "./resources/js/handle_errors.js");
 /* harmony import */ var _toasts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../toasts */ "./resources/js/toasts.js");
+/* harmony import */ var _refresh_block__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../refresh_block */ "./resources/js/refresh_block.js");
+
 
 
 function getSelected(table) {
@@ -244,7 +294,7 @@ $(document).on('click', '#summarize_button', function () {
       (0,_handle_errors__WEBPACK_IMPORTED_MODULE_0__.handleError)(_error, 'Time log summarize failed');
     },
     success: function success(result) {
-      $('#time_logs_table').replaceWith($(result));
+      (0,_refresh_block__WEBPACK_IMPORTED_MODULE_2__.refresh)($('#time_logs_table'), $(result));
       (0,_toasts__WEBPACK_IMPORTED_MODULE_1__.hideFailToast)();
     }
   });
@@ -286,6 +336,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _serialize_tr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../serialize_tr */ "./resources/js/serialize_tr.js");
 /* harmony import */ var _handle_errors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../handle_errors */ "./resources/js/handle_errors.js");
 /* harmony import */ var _toasts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../toasts */ "./resources/js/toasts.js");
+/* harmony import */ var _refresh_block__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../refresh_block */ "./resources/js/refresh_block.js");
+
 
 
 
@@ -302,7 +354,7 @@ $(document).on('change', '.time_log_form input:not(.serialize-disable), .time_lo
       (0,_handle_errors__WEBPACK_IMPORTED_MODULE_1__.handleError)(_error, 'Time log update failed');
     },
     success: function success(result) {
-      $('#time_logs_table').replaceWith($(result));
+      (0,_refresh_block__WEBPACK_IMPORTED_MODULE_3__.refresh)($('#time_logs_table'), $(result));
       (0,_toasts__WEBPACK_IMPORTED_MODULE_2__.hideFailToast)();
       (0,_toasts__WEBPACK_IMPORTED_MODULE_2__.showSuccessToast)('Time log successfully updated');
     }

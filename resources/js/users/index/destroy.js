@@ -1,4 +1,5 @@
 import {handleError} from "../../handle_errors";
+import {refresh} from "../../refresh_block";
 
 $(document).on('click', '.destroy_user', function () {
     if(confirm('Do you really want to delete user?')){
@@ -12,7 +13,7 @@ $(document).on('click', '.destroy_user', function () {
                 handleError(error, 'User delete failed');
             },
             success: function (result) {
-                $('#users_table').replaceWith($(result));
+                refresh($('#users_table'), $(result));
             }
         })
     }

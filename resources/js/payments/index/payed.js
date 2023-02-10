@@ -1,5 +1,6 @@
 import {handleError} from "../../handle_errors";
 import {showSuccessToast} from "../../toasts";
+import {refresh} from "../../refresh_block";
 
 $(document).on('click', '.payed_button', function () {
     if(confirm('Do you really want to pay for this time?')){
@@ -13,7 +14,7 @@ $(document).on('click', '.payed_button', function () {
                 handleError(error, 'Paying failed');
             },
             success: function (result) {
-                $('#users_table').replaceWith($(result));
+                refresh($('#users_table'), $(result));
                 showSuccessToast('The time was successfully payed');
             }
         })

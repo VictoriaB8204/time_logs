@@ -4,6 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import {resizeTextArea} from "./resize_textarea";
+
 require('./bootstrap');
 
 window.Vue = require('vue').default;
@@ -30,5 +32,9 @@ window.Vue = require('vue').default;
 // const app = new Vue({
 //     el: '#app'
 // });
+
+$(document).on("input", "textarea", function () {
+    resizeTextArea();
+});
 
 

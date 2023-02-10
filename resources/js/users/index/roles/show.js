@@ -1,4 +1,5 @@
 import {handleError} from "../../../handle_errors";
+import {refresh} from "../../../refresh_block";
 
 $(document).on('click', '.show_roles_button', function () {
     $.ajax({
@@ -11,7 +12,7 @@ $(document).on('click', '.show_roles_button', function () {
             handleError(error, 'Load user roles failed');
         },
         success: function (result) {
-            $('#role_list').replaceWith($(result));
+            refresh($('#role_list'), $(result));
         }
     })
 })

@@ -1,5 +1,6 @@
 import {handleError} from "../../handle_errors";
 import {hideFailToast} from "../../toasts";
+import {refresh} from "../../refresh_block";
 
 function getSelected(table){
     let data = [];
@@ -24,7 +25,7 @@ $(document).on('click', '#summarize_button', function () {
             handleError(error, 'Time log summarize failed');
         },
         success: function (result) {
-            $('#time_logs_table').replaceWith($(result));
+            refresh($('#time_logs_table'), $(result));
             hideFailToast();
         }
     })

@@ -1,4 +1,5 @@
 import {handleError} from "../../handle_errors";
+import {refresh} from "../../refresh_block";
 
 $(document).on('click', '.destroy_time_log', function () {
     if(confirm('Do you really want to delete time log?')){
@@ -12,7 +13,7 @@ $(document).on('click', '.destroy_time_log', function () {
                 handleError(error, 'Time log delete failed');
             },
             success: function (result) {
-                $('#time_logs_table').replaceWith($(result));
+                refresh($('#time_logs_table'), $(result));
             }
         })
     }
