@@ -8,5 +8,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/payments/index.js') }}" defer></script>
+    <script src="{{ mix('/js/payments/index.js') }}" defer></script>
 @endsection
