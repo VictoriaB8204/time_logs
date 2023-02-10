@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'TimeLogs') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ mix('/public/js/app.js') }}" defer></script>
+    <script src="{{ mix('/js/app.js') }}" defer></script>
     @yield('scripts')
 
     <!-- Fonts -->
@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ mix('/public/css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
