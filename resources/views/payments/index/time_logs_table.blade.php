@@ -21,8 +21,6 @@
             <th scope="col">Actions</th>
             <th scope="col">User</th>
             <th scope="col" class="w-0">Time spent</th>
-            <th scope="col" class="w-0">Cost</th>
-            <th scope="col" class="w-0">Rate</th>
         </tr>
         </thead>
         <tbody>
@@ -35,8 +33,6 @@
                 <td>{{ $timeLog->action_description }}</td>
                 <td>{{ $timeLog->creator->name }}</td>
                 <td>{{ $timeLog->time_spent }}</td>
-                <td>{{ $timeLog->cost }}</td>
-                <td>{{ $timeLog->rate }}</td>
             </tr>
         @endforeach
         </tbody>
