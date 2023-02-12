@@ -1,9 +1,10 @@
-import {resizeTextArea} from "./resize_textarea";
+import {documentOnLoad} from "./time_logs/index/onload";
+
 
 export function refresh(block, replace){
     let ret = block.replaceWith(replace); // Call replaceWith
 
-    resizeTextArea();
+    documentOnLoad();
 
     return ret;  // For chaining
 }
