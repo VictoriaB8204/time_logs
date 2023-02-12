@@ -10,6 +10,7 @@ use App\Services\ExcelServices\TimeLogsExcelService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class TimeLogController extends Controller
 {

@@ -9,9 +9,12 @@ $(document).on('click', '#create_button', function () {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        data: {
-            'start_time_date' : now(),
-        },
+        data: [
+            {
+                'name': 'start_time_date',
+                'value': now()
+            }
+        ],
         error: function(error){
             handleError(error, 'Time log create failed');
         },

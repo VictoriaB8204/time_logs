@@ -11,7 +11,6 @@ function getSelected(table){
 }
 
 $(document).on('click', '#summarize_button', function () {
-    console.log(getSelected($('#time_logs_table')));
     $.ajax({
         url: 'time_logs/summarize',
         method: 'post',
