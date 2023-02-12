@@ -21,7 +21,7 @@ abstract class ExcelService
 
     function __construct()
     {
-        $this->pathToSave = $_SERVER['DOCUMENT_ROOT'] . 'public/files/file';
+        $this->pathToSave = $_SERVER['DOCUMENT_ROOT'] . '/public/files/file';
         $this->spreadsheet = new Spreadsheet();
         $this->spreadsheet->setActiveSheetIndex(0);
     }
