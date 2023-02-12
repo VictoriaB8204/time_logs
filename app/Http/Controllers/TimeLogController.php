@@ -162,7 +162,7 @@ class TimeLogController extends Controller
     public function getExcel(){
         $timeLogs = TimeLog::where('creator_id', Auth::user()->id)
             ->where('start_time_date', '>', Carbon::now()->startOfWeek())
-            ->orderBy('start_time_date', 'desc')
+            ->orderBy('start_time_date')
             ->get();
         $excelService = new TimeLogsExcelService();
         return $excelService->makeDocument($timeLogs);

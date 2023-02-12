@@ -1,5 +1,6 @@
 import {handleError} from "../../handle_errors";
 import {refresh} from "../../refresh_block";
+import {now} from "../../date";
 
 $(document).on('click', '#create_button', function () {
     $.ajax({
@@ -8,7 +9,9 @@ $(document).on('click', '#create_button', function () {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        data: $('#create_form').serialize(),
+        data: {
+            'start_time_date' : now(),
+        },
         error: function(error){
             handleError(error, 'Time log create failed');
         },
