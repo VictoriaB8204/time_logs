@@ -9,4 +9,6 @@ require('./index/get_excel');
 require('./index/summarize');
 require('./index/localStorage');
 
-documentOnLoad();
+window.onload = (event) => {
+    documentOnLoad();
+};
