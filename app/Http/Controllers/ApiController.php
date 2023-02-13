@@ -12,6 +12,11 @@ class ApiController extends Controller
 //        return $user->time_logs_for_payment
 //            ->pluck('id')
 //            ->toJson();
-        return $user->time_logs->first()->toJson();
+        return $user->time_logs()
+            ->with('creator', 'action_type', 'software')
+//            ->where('start_time_date', '<', Carbon::now()->startOfWeek())
+//            ->where('is_payed', false)
+            ->get()
+            ->toJson();
     }
 }
