@@ -1,6 +1,5 @@
 import {handleError} from "../../handle_errors";
 import {refresh} from "../../refresh_block";
-import {forget} from "./localStorage";
 
 $(document).on('click', '#create_button', function () {
     $.ajax({
@@ -15,10 +14,7 @@ $(document).on('click', '#create_button', function () {
         },
         success: function (result) {
             refresh($('#page_content'), $(result).find('#page_content'));
-
-            $('#create_form input, #create_form textarea').each(function () {
-                forget($(this));
-            })
+            $('#clean_create_form').trigger('click');
         }
     })
 })

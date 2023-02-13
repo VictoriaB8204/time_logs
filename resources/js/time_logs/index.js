@@ -9,6 +9,7 @@ require('./index/destroy');
 require('./index/get_excel');
 require('./index/summarize');
 require('./index/localStorage');
+require('./index/clean_create_form');
 
 window.onload = (event) => {
     documentOnLoad();
