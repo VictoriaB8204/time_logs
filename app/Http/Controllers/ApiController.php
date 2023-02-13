@@ -15,7 +15,7 @@ class ApiController extends Controller
         return $user->time_logs()
             ->with('creator', 'action_type', 'software')
             ->where('start_time_date', '<', Carbon::now()->startOfWeek())
-//            ->where('is_payed', false)
+            ->where('is_payed', false)
             ->get()
             ->toJson();
     }
