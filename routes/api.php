@@ -18,4 +18,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/user/{user}/current_week_logs', [\App\Http\Controllers\ApiController::class, 'getCurrentWeekTimelogs']);
+Route::get('/user/{email}/current_week_logs', [\App\Http\Controllers\ApiController::class, 'getCurrentWeekTimelogs']);
