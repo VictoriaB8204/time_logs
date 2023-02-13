@@ -3,7 +3,7 @@ import {handleError} from "../../handle_errors";
 import {hideFailToast, showSuccessToast} from "../../toasts";
 import {refresh} from "../../refresh_block";
 
-$(document).on('change', '.time_log_form input:not(.serialize-disable), .time_log_form textarea:not(.serialize-disable), .time_log_form select:not(.serialize-disable)', function () {
+$(document).on('blur', '.time_log_form input:not(.serialize-disable), .time_log_form textarea:not(.serialize-disable), .time_log_form select:not(.serialize-disable)', function () {
     let tr = $(this).closest('tr.time_log_form');
     $.ajax({
         url: 'time_logs/' + tr.find('.time_log_id').val(),
