@@ -1,4 +1,5 @@
 import {documentOnLoad} from "./index/onload";
+import {remember} from "./index/localStorage";
 
 
 require('./index/time_buttons');
@@ -12,3 +13,7 @@ require('./index/localStorage');
 window.onload = (event) => {
     documentOnLoad();
 };
+
+$(document).on('change', '#create_form input, #create_form textarea', function () {
+    remember($(this));
+})
