@@ -15,8 +15,8 @@ class TimeLog extends Model
     protected $guarded = ['id'];
 
     protected $casts = [
-        'start_time_date' => 'datetime:d.m.Y H:00',
-        'end_time_date' => 'datetime:d.m.Y H:00',
+        'start_time_date' => 'datetime:d.m.Y H:i',
+        'end_time_date' => 'datetime:d.m.Y H:i',
     ];
 
     public function creator()
