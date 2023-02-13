@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 class ApiController extends Controller
 {
     public function getCurrentWeekTimelogs($email){
-        return $email;
-//        $user = User::where('email', $email)->first();
+        $user = User::where('email', $email)->first();
+        return $user->id;
 //        return $user->time_logs_for_payment->toJson();
     }
 }
