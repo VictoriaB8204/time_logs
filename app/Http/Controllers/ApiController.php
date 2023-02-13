@@ -12,6 +12,6 @@ class ApiController extends Controller
 //        return $user->time_logs_for_payment
 //            ->pluck('id')
 //            ->toJson();
-        return $user->toJson();
+        return $user->time_logs->first()->toJson();
     }
 }
