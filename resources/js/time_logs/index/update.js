@@ -23,7 +23,7 @@ function update(input){
     })
 }
 
-$(document).on('change', '.time_log_form input:not(.serialize-disable, [type="datetime-local"]), .time_log_form textarea:not(.serialize-disable), .time_log_form select:not(.serialize-disable)', function () {
+$(document).on('change', '.time_log_form input:not(.serialize-disable):not([type="datetime-local"]), .time_log_form textarea:not(.serialize-disable), .time_log_form select:not(.serialize-disable)', function () {
     update($(this));
 })
 
