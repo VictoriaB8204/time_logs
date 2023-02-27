@@ -123,7 +123,8 @@ class TimeLogController extends Controller
 
         while ($timeLogs->count() > 0){
             $nextTimeLog = $timeLogs->shift();
-            $firstTimeLog->end_time_date = Carbon::make($firstTimeLog->end_time_date)->addRealHours($nextTimeLog->time_spent);
+            $firstTimeLog->end_time_date = Carbon::make($firstTimeLog->end_time_date)
+                ->addMinutes($nextTimeLog->time_spent_in_minutes);
             $firstTimeLog->action_description .= '. ' . $nextTimeLog->action_description;
             $nextTimeLog->delete();
         }

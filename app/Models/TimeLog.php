@@ -44,6 +44,16 @@ class TimeLog extends Model
         return round($end->floatDiffInRealHours($start), 2);
     }
 
+    public function getTimeSpentInMinutesAttribute(){
+        $start = Carbon::make($this->start_time_date);
+        $end = Carbon::make($this->end_time_date);
+
+        if(!$end)
+            return null;
+
+        return $end->diffInMinutes($start);
+    }
+
     public function getCostAttribute(){
         return round($this->rate * $this->time_spent, 2);
     }
