@@ -30,6 +30,7 @@ class ActionTypesSeeder extends Seeder
             'Проектирование UI/UX',
             'Системный анализ',
             'Тестирование',
+            'Тех поддержка',
         ];
         foreach ($action_types as $action_type)
             ActionType::updateOrCreate(['name' => $action_type], ['name' => $action_type]);

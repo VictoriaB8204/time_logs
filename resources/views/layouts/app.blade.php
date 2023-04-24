@@ -35,13 +35,15 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         @auth
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('time_logs.archive') }}">Archive</a>
-                            </li>
-                            @if(Auth::user()->hasAccess('payer'))
+                            @if(Auth::user()->hasAccess('employee'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('payments.index') }}">Payment</a>
+                                    <a class="nav-link" href="{{ route('time_logs.archive') }}">Archive</a>
                                 </li>
+                                @if(Auth::user()->hasAccess('payer'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('payments.index') }}">Payment</a>
+                                    </li>
+                                @endif
                             @endif
                         @endauth
 

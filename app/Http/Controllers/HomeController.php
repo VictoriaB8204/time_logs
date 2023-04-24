@@ -26,6 +26,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->hasRole('employee'))
+            return redirect()->route('time_logs.index');
+
+        if(Auth::user()->hasRole('payer'))
+            return redirect()->route('payments.index');
+
         return redirect()->route('time_logs.index');
     }
 }
