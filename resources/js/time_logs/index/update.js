@@ -16,7 +16,7 @@ function update(input){
             handleError(error, 'Time log update failed');
         },
         success: function (result) {
-            refresh($('#time_logs_table'), $(result));
+            // refresh($('#time_logs_table'), $(result));
             hideFailToast();
             showSuccessToast('Time log successfully updated');
         }
