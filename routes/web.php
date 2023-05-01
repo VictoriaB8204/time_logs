@@ -17,6 +17,7 @@ Route::middleware('auth')->group(function (){
     Route::prefix('time_logs')->controller(\App\Http\Controllers\TimeLogController::class)->group(function () {
         Route::get('/archive', 'archive')->name('time_logs.archive');
         Route::get('/get_excel', 'getExcel');
+        Route::get('/get_archive_excel', 'getArchiveExcel');
         Route::post('/summarize', 'summarize');
     });
 

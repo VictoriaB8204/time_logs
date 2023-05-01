@@ -1,0 +1,2 @@
+(()=>{"use strict";function t(t,e){var o;console.log(t),o=e+" Ошибка "+t.status+" "+t.statusText,$(".toastFail").find(".toast-body").text(o),bootstrap.Toast.getOrCreateInstance($(".toastFail")).show()}$(document).on("click","#get_archive_excel_button",(function(){$.ajax({url:"/time_logs/get_archive_excel",method:"get",error:function(e){t(e,"Export to Excel failed")},success:function(t){var e=document.createElement("a");e.setAttribute("href",t),e.setAttribute("download",""),e.click()}})}))})();
+//# sourceMappingURL=index.js.map

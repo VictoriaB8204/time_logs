@@ -169,4 +169,10 @@ class TimeLogController extends Controller
         $excelService = new TimeLogsExcelService();
         return $excelService->makeDocument($timeLogs);
     }
+
+    public function getArchiveExcel(){
+        $timeLogs = TimeLog::where('creator_id', Auth::user()->id)->orderBy('start_time_date')->get();
+        $excelService = new TimeLogsExcelService();
+        return $excelService->makeDocument($timeLogs);
+    }
 }

@@ -1,9 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Archive</h2>
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+        <button class="btn p-0 dropdown-toggle text-start flex-grow-1"
+                type="button" data-bs-toggle="collapse" data-bs-target="#archiveTable"
+                aria-expanded="true" aria-controls="archiveTable"
+        >
+            <h3 class="d-inline-block">Archive</h3>
+        </button>
+        <div>
+            <button class="btn btn-primary" id="get_archive_excel_button">Get Excel</button>
+        </div>
+    </div>
 
-    <div class="table-responsive">
+    <div class="table-responsive mb-5 collapse show" id="archiveTable">
         <table class="table table-striped table-sticky-header">
             <thead>
             <tr>
@@ -34,4 +44,8 @@
             </tbody>
         </table>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ mix('/js/archive/index.js') }}" defer></script>
 @endsection
