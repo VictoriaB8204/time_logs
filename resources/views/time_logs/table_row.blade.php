@@ -4,12 +4,12 @@
         <input class="form-check-input serialize-disable" type="checkbox">
     </td>
     <td class="p-0">
-        <input type="datetime-local" class="form-control w-12-em" id="start_time_date" name="start_time_date"
+        <input type="datetime-local" class="form-control w-14-em" id="start_time_date" name="start_time_date"
                value="{{ $timeLog->start_time_date ? $timeLog->start_time_date : '' }}"
         >
     </td>
     <td class="p-0">
-        <input type="datetime-local" class="form-control w-12-em" id="end_time_date" name="end_time_date"
+        <input type="datetime-local" class="form-control w-14-em" id="end_time_date" name="end_time_date"
                value="{{ $timeLog->end_time_date ? $timeLog->end_time_date : '' }}"
         >
     </td>

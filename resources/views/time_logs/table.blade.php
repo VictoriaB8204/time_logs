@@ -3,9 +3,9 @@
         <thead>
         <tr>
             <th scope="col" class="w-0"></th>
-            <th scope="col" class="w-12-em">Start time</th>
-            <th scope="col" class="w-12-em">End time</th>
-            <th scope="col" class="w-12-em">Action type</th>
+            <th scope="col" class="w-14-em">Start time</th>
+            <th scope="col" class="w-14-em">End time</th>
+            <th scope="col" class="w-14-em">Action type</th>
             <th scope="col" class="w-6-em">Software</th>
             <th scope="col">Actions</th>
             <th scope="col" class="w-0">Time spent</th>
