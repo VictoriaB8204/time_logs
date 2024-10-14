@@ -34,8 +34,8 @@
             @foreach($timeLogs as $timeLog)
                 <tr class="time_log_form {{ $timeLog->is_payed ? 'table-success' : ''}}"
                 >
-                    <td>{{ $timeLog->start_time_date ? $timeLog->start_time_date : '' }}</td>
-                    <td>{{ $timeLog->end_time_date ? $timeLog->end_time_date : '' }}</td>
+                    <td>{{ $timeLog->start_time_date ? $timeLog->start_time_date->format('d.m.Y H:i') : '' }}</td>
+                    <td>{{ $timeLog->end_time_date ? $timeLog->end_time_date->format('d.m.Y H:i') : '' }}</td>
                     <td>{{ $timeLog->action_type ? $timeLog->action_type->name : '' }}</td>
                     <td>{{ $timeLog->software ? $timeLog->software->name : '' }}</td>
                     <td>{{ $timeLog->action_description }}</td>
