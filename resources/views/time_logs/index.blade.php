@@ -4,8 +4,8 @@
     <div id="page_content">
         @include('time_logs.create')
 
-        <div class="d-flex align-items-baseline">
-            <h2 class="me-5">Current logs</h2>
+        <div class="d-flex align-items-center">
+            <h2 class="me-3">Current logs</h2>
             <div class="form-group d-flex align-items-center me-3">
                 <label class="me-3" for="currentLogsDateFrom">from</label>
                 <input type="date" class="form-control session-date"
