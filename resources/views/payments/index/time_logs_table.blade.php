@@ -20,7 +20,7 @@
             <th scope="col" class="w-0">Software</th>
             <th scope="col">Actions</th>
             <th scope="col">User</th>
-            <th scope="col" class="w-0">Time spent</th>
+            <th scope="col" class="w-8-em">Time spent</th>
         </tr>
         </thead>
         <tbody>

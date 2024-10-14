@@ -8,7 +8,7 @@
             <th scope="col" class="w-18-em">Action type</th>
             <th scope="col" class="w-6-em">Software</th>
             <th scope="col">Actions</th>
-            <th scope="col" class="w-0">Time spent</th>
+            <th scope="col" class="w-8-em">Time spent</th>
             <th scope="col" class="w-0">Cost</th>
             <th scope="col" class="w-0">
                 <button class="btn btn-outline-secondary btn-sm border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
