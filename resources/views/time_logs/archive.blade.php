@@ -17,8 +17,8 @@
         <table class="table table-striped table-sticky-header">
             <thead>
             <tr>
-                <th scope="col" class="w-14-em">Start time</th>
-                <th scope="col" class="w-14-em">End time</th>
+                <th scope="col" class="w-12-em">Start time</th>
+                <th scope="col" class="w-12-em">End time</th>
                 <th scope="col" class="w-0">Action type</th>
                 <th scope="col" class="w-0">Software</th>
                 <th scope="col">Actions</th>

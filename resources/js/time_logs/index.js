@@ -10,6 +10,7 @@ require('./index/get_excel');
 require('./index/summarize');
 require('./index/localStorage');
 require('./index/clean_create_form');
+require('./index/set_date_interval');
 
 window.onload = (event) => {
     documentOnLoad();

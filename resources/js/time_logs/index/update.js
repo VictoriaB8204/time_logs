@@ -5,6 +5,7 @@ import {refresh} from "../../refresh_block";
 
 function update(input){
     let tr = input.closest('tr.time_log_form');
+
     $.ajax({
         url: 'time_logs/' + tr.find('.time_log_id').val(),
         method: 'put',
@@ -16,7 +17,7 @@ function update(input){
             handleError(error, 'Time log update failed');
         },
         success: function (result) {
-            // refresh($('#time_logs_table'), $(result));
+            refresh($('#time_logs_table'), $(result));
             hideFailToast();
             showSuccessToast('Time log successfully updated');
         }

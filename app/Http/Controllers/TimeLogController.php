@@ -7,7 +7,9 @@ use App\Models\Software;
 use App\Models\TimeLog;
 use App\Models\User;
 use App\Services\ExcelServices\TimeLogsExcelService;
+use App\Services\TimeLogsServices\TimeLogService;
 use Carbon\Carbon;
+use Cassandra\Time;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -21,13 +23,14 @@ class TimeLogController extends Controller
      */
     public function index()
     {
+        $dateInterval = TimeLogService::getInstance()->refreshCurrentLogsDateInterval();
+
         return view('time_logs.index',[
-            'timeLogs' => TimeLog::where('creator_id', Auth::user()->id)
-                ->where('start_time_date', '>', Carbon::now()->startOfWeek())
-                ->orderBy('start_time_date', 'desc')
-                ->get(),
+            'timeLogs' => TimeLogService::getInstance()->getCurrentTimeLogs(),
             'actionTypes' => ActionType::orderBy('name')->get(),
             'allSoftware' => Software::orderBy('name')->get(),
+            'currentLogsDateFrom' => $dateInterval['from'],
+            'currentLogsDateTo' => $dateInterval['to'],
         ]);
     }
 
@@ -55,19 +58,7 @@ class TimeLogController extends Controller
      */
     public function store(Request $request)
     {
-        $previousTimeLog = TimeLog::where('creator_id', Auth::user()->id)->get()->last();
-
-        $timelog = TimeLog::create($request->all());
-        $timelog->creator()->associate(Auth::user()->id);
-        $timelog->rate = Auth::user()->current_rate;
-
-        if($previousTimeLog && $previousTimeLog->action_type)
-            $timelog->action_type()->associate($previousTimeLog->action_type->id);
-
-        if($previousTimeLog && $previousTimeLog->software)
-            $timelog->software()->associate($previousTimeLog->software->id);
-
-        $timelog->save();
+        TimeLogService::getInstance()->store($request);
         return $this->index();
     }
 
@@ -102,15 +93,10 @@ class TimeLogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $timeLog = TimeLog::find($id);
-        $timeLog->fill($request->all());
-        $timeLog->save();
+        TimeLog::where('id', $id)->update($request->all());
 
         return view('time_logs.table', [
-            'timeLogs' => TimeLog::where('creator_id', Auth::user()->id)
-                ->where('start_time_date', '>', Carbon::now()->startOfWeek())
-                ->orderBy('start_time_date', 'desc')
-                ->get(),
+            'timeLogs' => TimeLogService::getInstance()->getCurrentTimeLogs(),
             'actionTypes' => ActionType::orderBy('name')->get(),
             'allSoftware' => Software::orderBy('name')->get(),
         ]);
@@ -118,24 +104,10 @@ class TimeLogController extends Controller
 
     public function summarize(Request $request)
     {
-        $timeLogs = TimeLog::whereIn('id', $request->input('id_list'))->orderBy('start_time_date')->get();
-        $firstTimeLog = $timeLogs->shift();
-
-        while ($timeLogs->count() > 0){
-            $nextTimeLog = $timeLogs->shift();
-            $firstTimeLog->end_time_date = Carbon::make($firstTimeLog->end_time_date)
-                ->addMinutes($nextTimeLog->time_spent_in_minutes);
-            $firstTimeLog->action_description .= '. ' . $nextTimeLog->action_description;
-            $nextTimeLog->delete();
-        }
-
-        $firstTimeLog->save();
+        TimeLogService::getInstance()->summarize($request);
 
         return view('time_logs.table', [
-            'timeLogs' => TimeLog::where('creator_id', Auth::user()->id)
-                ->where('start_time_date', '>', Carbon::now()->startOfWeek())
-                ->orderBy('start_time_date', 'desc')
-                ->get(),
+            'timeLogs' => TimeLogService::getInstance()->getCurrentTimeLogs(),
             'actionTypes' => ActionType::orderBy('name')->get(),
             'allSoftware' => Software::orderBy('name')->get(),
         ]);
@@ -151,28 +123,31 @@ class TimeLogController extends Controller
     {
         $timeLog = TimeLog::find($id);
         $timeLog->delete();
+
         return view('time_logs.table', [
-            'timeLogs' => TimeLog::where('creator_id', Auth::user()->id)
-                ->where('start_time_date', '>', Carbon::now()->startOfWeek())
-                ->orderBy('start_time_date', 'desc')
-                ->get(),
+            'timeLogs' => TimeLogService::getInstance()->getCurrentTimeLogs(),
             'actionTypes' => ActionType::orderBy('name')->get(),
             'allSoftware' => Software::orderBy('name')->get(),
         ]);
     }
 
     public function getExcel(){
-        $timeLogs = TimeLog::where('creator_id', Auth::user()->id)
-            ->where('start_time_date', '>', Carbon::now()->startOfWeek())
-            ->orderBy('start_time_date')
-            ->get();
-        $excelService = new TimeLogsExcelService();
-        return $excelService->makeDocument($timeLogs);
+        $timeLogs = TimeLogService::getInstance()->getCurrentTimeLogs();
+        return TimeLogsExcelService::getInstance()->makeDocument($timeLogs);
     }
 
     public function getArchiveExcel(){
         $timeLogs = TimeLog::where('creator_id', Auth::user()->id)->orderBy('start_time_date')->get();
-        $excelService = new TimeLogsExcelService();
-        return $excelService->makeDocument($timeLogs);
+        return TimeLogsExcelService::getInstance()->makeDocument($timeLogs);
+    }
+
+    public function updateCurrentLogsDates(Request $request){
+        $request->session()->put($request->all());
+
+        return view('time_logs.table', [
+            'timeLogs' => TimeLogService::getInstance()->getCurrentTimeLogs(),
+            'actionTypes' => ActionType::orderBy('name')->get(),
+            'allSoftware' => Software::orderBy('name')->get(),
+        ]);
     }
 }

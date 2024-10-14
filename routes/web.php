@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function (){
         Route::get('/get_excel', 'getExcel');
         Route::get('/get_archive_excel', 'getArchiveExcel');
         Route::post('/summarize', 'summarize');
+        Route::put('/current_logs/dates/', 'updateCurrentLogsDates');
     });
 
     Route::resource('time_logs', \App\Http\Controllers\TimeLogController::class);

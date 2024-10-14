@@ -4,15 +4,24 @@
     <div id="page_content">
         @include('time_logs.create')
 
-        <div class="d-flex">
-            <h2 class="me-5">Current week</h2>
-{{--            <div>--}}
-{{--                <button type="button" id="create_button" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add time log">--}}
-{{--                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">--}}
-{{--                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>--}}
-{{--                    </svg>--}}
-{{--                </button>--}}
-{{--            </div>--}}
+        <div class="d-flex align-items-baseline">
+            <h2 class="me-5">Current logs</h2>
+            <div class="form-group d-flex align-items-center me-3">
+                <label class="me-3" for="currentLogsDateFrom">from</label>
+                <input type="date" class="form-control session-date"
+                       id="currentLogsDateFrom"
+                       name="current_logs_date_from"
+                       value="{{ $currentLogsDateFrom->format('Y-m-d') }}"
+                >
+            </div>
+            <div class="form-group d-flex align-items-center me-3">
+                <label class="me-3" for="currentLogsDateTo">to</label>
+                <input type="date" class="form-control session-date"
+                       id="currentLogsDateTo"
+                       name="current_logs_date_to"
+                       value="{{ $currentLogsDateTo->format('Y-m-d') }}"
+                >
+            </div>
         </div>
         @include('time_logs.table')
     </div>

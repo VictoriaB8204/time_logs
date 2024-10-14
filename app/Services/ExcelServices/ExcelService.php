@@ -4,12 +4,13 @@
 namespace App\Services\ExcelServices;
 
 use App\Services\ExcelServices\ExcelStyles\ExcelStyles;
+use App\Services\Service;
 use Illuminate\Support\Facades\Log;
 use PhpOffice\PhpSpreadsheet\Cell\DataType;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-abstract class ExcelService
+abstract class ExcelService extends Service
 {
     protected $excelColumnNames = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'];
     protected $columnsTitleIndex;
@@ -19,7 +20,7 @@ abstract class ExcelService
     protected $data;
     private $pathToSave;
 
-    function __construct()
+    function init()
     {
         $this->pathToSave = $_SERVER['DOCUMENT_ROOT'] . '/public/files/file';
         $this->spreadsheet = new Spreadsheet();

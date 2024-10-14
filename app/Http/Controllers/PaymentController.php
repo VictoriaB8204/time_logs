@@ -25,8 +25,7 @@ class PaymentController extends Controller
             ->orderBy('creator_id')
             ->orderBy('start_time_date')
             ->get();
-        $excelService = new TimeLogsExcelService();
-        return $excelService->makeDocument($timeLogs);
+        return TimeLogsExcelService::getInstance()->makeDocument($timeLogs);
     }
 
     public function payForTheTime(User $user){
