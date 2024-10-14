@@ -10823,10 +10823,15 @@ html, body {
   height: 100%;
 }
 
-.table-sticky-header th {
+.table-sticky-header thead tr:nth-child(1) th {
   position: sticky;
   top: 0;
+  z-index: 10;
   background: var(--bs-body-bg) !important;
+}
+
+.top-3-em {
+  top: 2.7em !important;
 }
 
 .w-12-em {
@@ -10843,6 +10848,10 @@ html, body {
 
 .w-6-em {
   width: 6em !important;
+}
+
+.w-8-em {
+  width: 8em !important;
 }
 
 .w-0 {

@@ -1,30 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
-        <button class="btn p-0 dropdown-toggle text-start flex-grow-1"
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap bg-light sticky-top">
+        <button class="btn p-0 dropdown-toggle text-start"
                 type="button" data-bs-toggle="collapse" data-bs-target="#archiveTable"
                 aria-expanded="true" aria-controls="archiveTable"
         >
             <h3 class="d-inline-block">Archive</h3>
         </button>
         <div>
+            {{ $timeLogs->links('vendor.pagination.bootstrap-4') }}
+        </div>
+        <div>
             <button class="btn btn-primary" id="get_archive_excel_button">Get Excel</button>
         </div>
     </div>
 
-    <div class="table-responsive mb-5 collapse show" id="archiveTable">
+    <div class="mb-5 collapse show" id="archiveTable">
         <table class="table table-striped table-sticky-header">
             <thead>
             <tr>
-                <th scope="col" class="w-12-em">Start time</th>
-                <th scope="col" class="w-12-em">End time</th>
-                <th scope="col" class="w-0">Action type</th>
-                <th scope="col" class="w-0">Software</th>
-                <th scope="col">Actions</th>
-                <th scope="col" class="w-0">Time spent</th>
-                <th scope="col" class="w-0">Cost</th>
-                <th scope="col" class="w-0">Rate</th>
+                <th scope="col" class="top-3-em w-12-em">Start time</th>
+                <th scope="col" class="top-3-em w-12-em">End time</th>
+                <th scope="col" class="top-3-em w-0">Action type</th>
+                <th scope="col" class="top-3-em w-0">Software</th>
+                <th scope="col" class="top-3-em">Actions</th>
+                <th scope="col" class="top-3-em w-8-em">Time spent</th>
+                <th scope="col" class="top-3-em w-0">Cost</th>
+                <th scope="col" class="top-3-em w-0">Rate</th>
             </tr>
             </thead>
             <tbody>
@@ -44,6 +47,7 @@
             </tbody>
         </table>
     </div>
+
 @endsection
 
 @section('scripts')

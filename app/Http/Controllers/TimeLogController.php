@@ -36,7 +36,7 @@ class TimeLogController extends Controller
 
     public function archive(){
         return view('time_logs.archive', [
-            'timeLogs' => TimeLog::where('creator_id', Auth::user()->id)->orderBy('start_time_date')->get()
+            'timeLogs' => TimeLog::where('creator_id', Auth::user()->id)->orderBy('start_time_date', 'desc')->paginate(50)
         ]);
     }
 
