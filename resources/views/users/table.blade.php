@@ -25,7 +25,13 @@
                         {{ $user->name }}
                     @endif
                 </td>
-                <td>{{ $user->email }}</td>
+                <td>
+                    @if(Auth::user()->id == $user->id || Auth::user()->hasRole('admin'))
+                        <input class="form-control" type="text" name="email" value="{{ $user->email }}">
+                    @else
+                        {{ $user->email }}
+                    @endif
+                </td>
                 <td>
                     @if(Auth::user()->id == $user->id)
                         <input class="form-control" type="number" step="1" name="current_rate" value="{{ $user->current_rate }}">

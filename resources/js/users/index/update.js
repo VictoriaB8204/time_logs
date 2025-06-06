@@ -1,6 +1,7 @@
 import {handleError} from "../../handle_errors";
 import {hideFailToast, showSuccessToast} from "../../toasts";
 import {serializeTr} from "../../serialize_tr";
+import {refresh} from "../../refresh_block";
 
 $(document).on('change', '.user_form input', function () {
     $.ajax({
@@ -13,7 +14,8 @@ $(document).on('change', '.user_form input', function () {
         error: function(error){
             handleError(error, 'User update failed');
         },
-        success: function () {
+        success: function (result) {
+            refresh($('#users_table'), $(result));
             hideFailToast();
             showSuccessToast('User successfully updated');
         }
