@@ -12,7 +12,7 @@ const mix = require('laravel-mix');
  */
 
 //комментировать перед сборкой для прода
-// mix.setPublicPath('public_html/');
+mix.setPublicPath('public_html/');
 mix
     .js('resources/js/app.js', 'public/js')
     .js('resources/js/time_logs/index.js', 'public/js/time_logs')
