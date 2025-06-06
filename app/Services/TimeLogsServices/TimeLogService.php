@@ -53,7 +53,13 @@ class TimeLogService extends Service
 
     public function store(Request $request){
         $previousTimeLog = TimeLog::where('creator_id', Auth::user()->id)->get()->last();
-        $timelog = $previousTimeLog->replicate();
+
+        if($previousTimeLog)
+            $timelog = $previousTimeLog->replicate();
+        else
+            $timelog = TimeLog::create([
+                'creator_id' => Auth::user()->id,
+            ]);
 
         $timelog = $timelog->fill($request->all());
         $timelog->rate = Auth::user()->current_rate;
