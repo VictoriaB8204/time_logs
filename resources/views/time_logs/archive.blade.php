@@ -51,5 +51,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ mix('/js/archive/index.js') }}" defer></script>
+    <script src="{{ mix('public/js/archive/index.js') }}" defer></script>
 @endsection
