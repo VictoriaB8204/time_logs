@@ -28,6 +28,6 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ mix('public/js/time_logs/index.js') }}" defer></script>
+    <script src="{{ mix('/js/time_logs/index.js') }}" defer></script>
 @endsection
 
