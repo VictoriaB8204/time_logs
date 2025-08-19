@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('payments.index.time_logs_table')
+{{--    @include('payments.index.time_logs_table')--}}
 
-    <h3>Unpaid time</h3>
+    @include('payments.index.generate_bill_modal')
+
+    <h3>Неоплаченное время</h3>
     @include('payments.index.users_table')
 @endsection
 

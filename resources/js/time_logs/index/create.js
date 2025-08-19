@@ -9,7 +9,7 @@ $(document).on('click', '#create_button', function () {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        data: $('#create_form').serialize(),
+        data: $('#billGenerationForm').serialize(),
         error: function(error){
             handleError(error, 'Time log create failed');
         },

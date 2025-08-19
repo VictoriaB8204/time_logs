@@ -2,9 +2,9 @@
     <table class="table table-hover table-borderless w-auto">
         <thead>
         <tr>
-            <th scope="col">User</th>
-            <th scope="col">Time spent</th>
-            <th scope="col">Cost</th>
+            <th scope="col">Исполнитель</th>
+            <th scope="col">Часы к оплате</th>
+            <th scope="col">Стоимость</th>
             <th></th>
         </tr>
         </thead>
@@ -18,7 +18,7 @@
                 <td>{{ $user->time_logs_for_payment->sum('time_spent') }}</td>
                 <td>{{ $user->time_logs_for_payment->sum('cost') }}</td>
                 <td>
-                    <button class="btn btn-sm btn-primary payed_button">Payed</button>
+                    <button class="btn btn-sm btn-primary payed_button">Оплатить</button>
                 </td>
             </tr>
         @endforeach

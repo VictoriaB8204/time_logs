@@ -38,6 +38,8 @@ Route::middleware('auth')->group(function (){
         Route::get('/', 'index')->name('payments.index');
         Route::get('/get_excel', 'getExcel');
         Route::post('/pay_for_the_time/{user}', 'payForTheTime');
+        Route::post('/generate_invoice', 'generateInvoice');
+        Route::post('/generate_act', 'generateAct');
     });
 });
 
