@@ -3,7 +3,7 @@
             type="button" data-bs-toggle="collapse" data-bs-target="#currentWeekTimeLogTable"
             aria-expanded="true" aria-controls="currentWeekTimeLogTable"
     >
-        <h3 class="d-inline-block">Current week detalization</h3>
+        <h3 class="d-inline-block">Детализация по текущей неделе</h3>
     </button>
     <div>
         <button class="btn btn-primary" id="get_payment_excel_button">Get Excel</button>

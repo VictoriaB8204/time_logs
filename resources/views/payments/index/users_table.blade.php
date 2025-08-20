@@ -1,4 +1,5 @@
-<div id="users_table">
+<div id="users_table" class="mb-5">
+    <h3>Неоплаченное время</h3>
     <table class="table table-hover table-borderless w-auto">
         <thead>
         <tr>

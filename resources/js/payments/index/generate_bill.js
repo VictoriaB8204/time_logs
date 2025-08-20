@@ -1,10 +1,3 @@
-import {handleError} from "../../handle_errors";
-
-$( document ).ready(function() {
-    $("#bill_date").val(new Date().toJSON().slice(0,10));
-});
-
-
 $(document).on('click', '#generate_invoice', function () {
     console.log($('#billGenerationForm').serialize());
     $.ajax({
