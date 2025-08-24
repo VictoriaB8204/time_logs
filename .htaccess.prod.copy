@@ -11,6 +11,7 @@ php_flag last_modified 1
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} !^/public/
+    RewriteCond %{REQUEST_METHOD} !POST
     RewriteRule ^(.*)$ /public/$1 [L,R=301]
 
     # Handle Front Controller...
