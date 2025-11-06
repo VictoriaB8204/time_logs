@@ -40,14 +40,14 @@ class TimeLogService extends Service
         return $this->getCurrentLogsDateInterval();
     }
 
-    public function getCurrentTimeLogs()
+    public function getCurrentTimeLogs($sortOrder = 'desc')
     {
         $dateInterval = $this->getCurrentLogsDateInterval();
 
         return TimeLog::where('creator_id', Auth::user()->id)
             ->where('start_time_date', '>=', $dateInterval['from'])
             ->where('start_time_date', '<=', $dateInterval['to'])
-            ->orderBy('start_time_date')
+            ->orderBy('start_time_date', $sortOrder)
             ->get();
     }
 

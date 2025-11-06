@@ -132,7 +132,7 @@ class TimeLogController extends Controller
     }
 
     public function getExcel(){
-        $timeLogs = TimeLogService::getInstance()->getCurrentTimeLogs();
+        $timeLogs = TimeLogService::getInstance()->getCurrentTimeLogs('asc');
         return TimeLogsExcelService::getInstance()->makeDocument($timeLogs);
     }
 
