@@ -47,7 +47,7 @@ class TimeLogService extends Service
         return TimeLog::where('creator_id', Auth::user()->id)
             ->where('start_time_date', '>=', $dateInterval['from'])
             ->where('start_time_date', '<=', $dateInterval['to'])
-            ->orderBy('start_time_date', 'desc')
+            ->orderBy('start_time_date')
             ->get();
     }
 
