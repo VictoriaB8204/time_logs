@@ -32,7 +32,7 @@ class TimeLogService extends Service
     {
         $dateInterval = $this->getCurrentLogsDateInterval();
 
-        if($dateInterval['to'] < Carbon::now()){
+        if(Carbon::now()->greaterThan($dateInterval['to'])){
             session(['current_logs_date_from' => $dateInterval['to']->addDay()]);
             session(['current_logs_date_to' => Carbon::now()->endOfWeek()]);
         }
