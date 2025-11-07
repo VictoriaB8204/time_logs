@@ -59,7 +59,12 @@ class TimeLogController extends Controller
     public function store(Request $request)
     {
         TimeLogService::getInstance()->store($request);
-        return $this->index();
+
+        return view('time_logs.table', [
+            'timeLogs' => TimeLogService::getInstance()->getCurrentTimeLogs(),
+            'actionTypes' => ActionType::orderBy('name')->get(),
+            'allSoftware' => Software::orderBy('name')->get(),
+        ]);
     }
 
     /**
