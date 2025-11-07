@@ -11,42 +11,11 @@ use Illuminate\Support\Facades\Log;
 
 class TimeLogService extends Service
 {
-    private function getCurrentLogsDateInterval(): array
-    {
-        return [
-            'from' => Carbon::
-                parse(
-                    session('current_logs_date_from', Carbon::now()->startOfWeek())
-                )
-                ->startOfDay(),
-
-            'to' => Carbon::
-                parse(
-                    session('current_logs_date_to', Carbon::now()->endOfWeek())
-                )
-                ->endOfDay()
-        ];
-    }
-
-    public function refreshCurrentLogsDateInterval(): array
-    {
-        $dateInterval = $this->getCurrentLogsDateInterval();
-
-        if(Carbon::now()->greaterThan($dateInterval['to'])){
-            session(['current_logs_date_from' => $dateInterval['to']->addDay()]);
-            session(['current_logs_date_to' => Carbon::now()->endOfWeek()]);
-        }
-
-        return $this->getCurrentLogsDateInterval();
-    }
-
     public function getCurrentTimeLogs($sortOrder = 'desc')
     {
-        $dateInterval = $this->getCurrentLogsDateInterval();
-
         return TimeLog::where('creator_id', Auth::user()->id)
-            ->where('start_time_date', '>=', $dateInterval['from'])
-            ->where('start_time_date', '<=', $dateInterval['to'])
+            ->where('start_time_date', '>=', DateIntervalService::getInstance()->getDateFrom())
+            ->where('start_time_date', '<=', DateIntervalService::getInstance()->getDateTo())
             ->orderBy('start_time_date', $sortOrder)
             ->get();
     }

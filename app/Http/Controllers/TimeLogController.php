@@ -7,6 +7,7 @@ use App\Models\Software;
 use App\Models\TimeLog;
 use App\Models\User;
 use App\Services\ExcelServices\TimeLogsExcelService;
+use App\Services\TimeLogsServices\DateIntervalService;
 use App\Services\TimeLogsServices\TimeLogService;
 use Carbon\Carbon;
 use Cassandra\Time;
@@ -23,14 +24,14 @@ class TimeLogController extends Controller
      */
     public function index()
     {
-        $dateInterval = TimeLogService::getInstance()->refreshCurrentLogsDateInterval();
+        DateIntervalService::getInstance()->refreshCurrentLogsDateInterval();
 
         return view('time_logs.index',[
             'timeLogs' => TimeLogService::getInstance()->getCurrentTimeLogs(),
             'actionTypes' => ActionType::orderBy('name')->get(),
             'allSoftware' => Software::orderBy('name')->get(),
-            'currentLogsDateFrom' => $dateInterval['from'],
-            'currentLogsDateTo' => $dateInterval['to'],
+            'currentLogsDateFrom' => DateIntervalService::getInstance()->getDateFrom(),
+            'currentLogsDateTo' => DateIntervalService::getInstance()->getDateTo(),
         ]);
     }
 
@@ -147,7 +148,8 @@ class TimeLogController extends Controller
     }
 
     public function updateCurrentLogsDates(Request $request){
-        $request->session()->put($request->all());
+
+        DateIntervalService::getInstance()->setFromRequest($request);
 
         return view('time_logs.table', [
             'timeLogs' => TimeLogService::getInstance()->getCurrentTimeLogs(),
