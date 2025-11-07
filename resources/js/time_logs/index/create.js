@@ -14,7 +14,7 @@ $(document).on('click', '#create_button', function () {
             handleError(error, 'Time log create failed');
         },
         success: function (result) {
-            refresh($('#page_content'), $(result).find('#page_content'));
+            refresh($('#time_logs_table'), $(result));
 
             $('#create_form input, #create_form textarea').each(function () {
                 forget($(this));
