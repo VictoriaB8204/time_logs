@@ -62,7 +62,7 @@ class DateIntervalService extends Service
         $this->dateTo = $this->getDateTo();
 
         if (Carbon::now()->greaterThan($this->dateTo)) {
-            $dateFrom = $this->getDateFrom()->addDay();
+            $dateFrom = $this->getDateTo()->addDay();
             $newDateTo = Carbon::now()->endOfWeek();
 
             $this->setDateFrom($dateFrom);
